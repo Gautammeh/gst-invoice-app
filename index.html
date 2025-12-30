@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Tax Invoice</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<div>
+
+  <div class="toolbar no-print">
+    <button onclick="window.print()">Print Invoice</button>
+    <div class="center-btn">
+      <button onclick="saveInvoice()">Save Invoice</button>
+      <button onclick="loadInvoice()">Load Last Invoice</button>
+    </div>
+    <button class="hamburger no-print" onclick="toggleSaved()">☰</button>
+
+    <div class="saved-section no-print" id="savedPanel">
+      <h3>Previous Saved Bills</h3>
+      <ul id="savedBills"></ul>
+    </div>
+    
+  </div>
+
+  
+
+  <div class="invoice">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="upper">
+        <div class="first">
+
+          <div class="heaadings">
+            <h2 class="title">TAX INVOICE</h2>
+            <h3>Mob: +91 9699962141</h3>
+          </div>
+
+          <div class="first-middle">
+            <div class="logo"><img src="./images/LmpwZw.png" alt=""></div>
+            <div class="company">
+
+
+              <h1>BALAJI ENTERPRISES</h1>
+              <p>
+                Swaminarayan Building, 02, Babubhai Chawl,<br>
+                Datta Mandir Road, Malad (East), Mumbai 400097
+              </p>
+
+            </div>
+          </div>
+          <div class="first-end">
+            <p><strong>GST NO: 27GTZPM0865F1ZY</strong> </p>
+            <p><strong>Email: balajienterprises5727@gmail.com</strong></p>
+          </div>
+
+        </div>
+
+        <div class="second">
+          <div class="meta">
+            <p> <span>R.R. No / G.R. No:</span>
+              <input type="text" name="gr" class="visible-input">
+            </p>
+            <p> <span>Dispatched Through:</span>
+              <input type="text" name="dispatched" class="visible-input">
+            </p>
+            <p> <span>No. of Cases / PM:</span>
+              <input type="text" name="case" class="visible-input">
+            </p>
+            <p> <span>Transport GSTIN No: </span>
+              <input type="text" name="transportGst" class="visible-input">
+            </p>
+            <p> <span>E-Way Bill No: </span>
+              <input type="text" name="ewayBill" class="visible-input">
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="third">
+        <p>
+          <span>Invoice No:</span>
+          <input type="number" name="invoiceNo" class="bold-font">
+        </p>
+
+        <p>
+          <span>Invoice Date:</span>
+          <input type="date" name="invoiceDate">
+        </p>
+
+        <p>
+          <span>Place of Supply:</span>
+          <input type="text" name="placeOfSupply">
+        </p>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="main-section">
+      <div class="main-name">
+        <p class="main-p"><span>Name:</span>
+          <input type="text" class="left-align">
+        </p>
+      </div>
+      <div class="main-address">
+        <p class="main-p"><span>Address:</span><input type="text" class="left-align"></p>
+        <input type="text" class="left-align">
+
+      </div>
+
+
+
+      <div class="main-third">
+        <div class="gstin-row">
+          <span>GSTIN:</span>
+
+          <div class="gstin-boxes">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
+          </div>
+        </div>
+
+
+        <p><span>State:</span><input type="text"></p>
+        <p><span>State Code:</span><input type="text"></p>
+
+
+
+      </div>
+
+      <div class="main-fourth">
+        <p><span>Mob:</span><input type="number"></p>
+        <p><span>Transport Name:</span><input type="text"></p>
+        <p><span>LR No:</span><input type="text"></p>
+        <p><span>Date:</span><input type="text"></p>
+      </div>
+
+
+    </div>
+
+    <!-- 
+    
+
+-->
+
+    <div class="table-sectionn">
+      <!-- ITEMS TABLE -->
+      <div class="table-section">
+        <table class="items-table">
+          <colgroup>
+            <col style="width: 4%">
+            <col style="width: 36%">
+            <col style="width: 10%">
+            <col style="width: 8%">
+            <col style="width: 8%">
+            <col style="width: 8%">
+            <col style="width: 15%">
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th>S. No.</th>
+              <th>Description of Goods</th>
+              <th>HSN<br>Code</th>
+              <th>GST<br>%</th>
+              <th>Qty.</th>
+              <th>Rate</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+
+          <tbody id="items">
+            <!-- rows injected -->
+          </tbody>
+        </table>
+      </div>
+
+  
+
+
+    </div>
+
+
+    <div class="bank-gst">
+
+
+      <table class="summary-table">
+        <tr>
+          <td class="bank">
+            <div class="bank-title">BANK DETAILS</div>
+            <div class="bank-info">
+              <div class="basic-detail">
+                <p>ACC NAME: BALAJI ENTERPRISES</p>
+                <p>Bank Name: State Bank Of India</p>
+                <p>Branch:Malad East </p>
+              </div>
+              <div class="important-details">
+                <p><strong>Acc No: 42331351064</strong></p>
+                <p><strong>IFSC Code: SBIN000310</strong></p>
+              </div>
+            </div>
+            
+           
+            <p class="invoice-para"> <span><strong>Total Invoice Value:</strong> </span>
+              <input type="text" name="invoice-para" class="half-width" id="amountWords">
+            </p>
+            <input type="text" name="invoice-secondpara">
+
+            <p>Certified that the particulars given above are true & correct.</p>
+            <div class="flex-material">
+              <p>Tax is Payable on Reverse Charge: Yes / No </p>
+              <p>E.&.O.E</p>
+            </div>
+          
+          </td>
+          <td class="tax">
+            <div class="tax-grid">
+              <div class="label">TOTAL</div>
+              <div class="value"><input class="num sep-num"></div>
+          
+              <div class="label">CGST (%) <input class="diff gst-inp"></div>
+              <div class="value"><input class="num sep-num"></div>
+          
+              <div class="label">SGST (%) <input class="diff gst-inp"></div>
+              <div class="value"><input class="num sep-num"></div>
+          
+              <div class="label">IGST (%) <input class="diff gst-inp"></div>
+              <div class="value"><input class="num sep-num"></div>
+          
+              <div class="label">Freight / Cartage</div>
+              <div class="value"><input class="num sep-num"></div>
+          
+              <div class="label bold">Total Invoice Value</div>
+              <div class="value bold">
+                <input class="num sep-num bold-font" type="number" id="finalTotal">
+              </div>
+            </div>
+          </td>
+          
+
+        </tr>
+      </table>
+
+
+    </div>
+
+<div class="footer-div">
+  <div class="upper-footer">
+    <div class="terms-condition">
+      <h4>Terms & Conditions</h4>
+        <ol>
+          <li>Payment not made within 15 days will attract 24% interest per Annual will be Charged</li>
+          <li>Our Responsibility ceases after delivery the goods to carrier</li>
+          <li>Goods once sold will not be taken back or exchanged</li>
+          <li>All disputes subject to Mumbai jurisdiction</li>
+        </ol>
+    </div>
+    <div class="copy-details">
+      <h4>Copy Details</h4>
+  
+  <p>Original - White Customer</p>
+  <p>Duplicate - Pink Transport</p>
+  <p>Triplicate - Yellow Office Copy</p>
+  <p>4th Copy - White Fax Copy</p>
+    </div>
+  </div>
+  
+ 
+  <div class="digital-signature">
+    <h3 class="red">For BALAJI ENTERPRISES</h3>
+  </div>
+</div>
+
+  </div>
+  
+  <!-- INVOICE INFO -->
+
+
+
+  </body>
+
+</html>
