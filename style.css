@@ -574,10 +574,18 @@ font-size: 1.5rem;
 
 .center-btn{
   text-align: center;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
 }
 
 
-
+.toolbar button{
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
 
 @media print {
 
